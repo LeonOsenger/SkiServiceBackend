@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace SkiServiceBackend.DTO
 {
-    public class AuftragslisteAnfordernDTO
+    public class ServiceAuftragDTO
     {
         [JsonPropertyName("Auftrag_Id")]
         public int AuftragsId { get; set; }
