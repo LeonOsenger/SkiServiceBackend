@@ -4,7 +4,6 @@ namespace ProjektarbeitBackend.Models
 {
     public class SkiServiceContext : DbContext
     {
-        public DbSet<MitarbeiterLogin> mitarbeiterLogins { get; set; }
 
         public DbSet<Mitarbeiter> mitarbeiters { get; set; }
 

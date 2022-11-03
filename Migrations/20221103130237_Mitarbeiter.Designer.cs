@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjektarbeitBackend.Models;
 
@@ -10,9 +11,10 @@ using ProjektarbeitBackend.Models;
 namespace SkiServiceBackend.Migrations
 {
     [DbContext(typeof(SkiServiceContext))]
-    partial class SkiServiceContextModelSnapshot : ModelSnapshot
+    [Migration("20221103130237_Mitarbeiter")]
+    partial class Mitarbeiter
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
