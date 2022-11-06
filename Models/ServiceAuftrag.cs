@@ -6,8 +6,6 @@ namespace ProjektarbeitBackend.Models
     {
         public int Id { get; set; }
         
-        public int Auftrags { get; set; }
-        
         public Dienstleistungen Dienstleistung { get; set; }
 
         public Priorität priorität { get; set; }
@@ -19,6 +17,10 @@ namespace ProjektarbeitBackend.Models
         public int Telefon { get; set; }
 
         public Status status { get; set; }
+
+        public DateTime Create_Date { get; set; }
+
+        public DateTime Pickup_Date { get; set; }
     }
 
     public enum Priorität
@@ -28,7 +30,7 @@ namespace ProjektarbeitBackend.Models
 
     public enum Status
     {
-        Unbearbeitet, Inarbeit, Fertig 
+        Offen, InArbeit, Abgeschlossen 
     }
 
 

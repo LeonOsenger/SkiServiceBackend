@@ -1,6 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using ProjektarbeitBackend.Models;
+using SkiServiceBackend.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddScoped<IServiceAuftragService, ServiceAuftragDBService>();
+
+// Add services to the container. 
+builder.Services.AddDbContext<SkiServiceContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DB1")));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

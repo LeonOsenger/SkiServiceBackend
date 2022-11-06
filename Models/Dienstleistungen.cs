@@ -8,7 +8,5 @@
 
         public float Preis { get; set; }
 
-        public string AuftragsPriorität { get; set; }
-
     }
 }
