@@ -40,7 +40,7 @@ namespace SkiServiceBackend.Services
 
         public ServiceAuftrag ?GetService(int id)
         {
-            return _dbContext.serviceAuftrag.Find(id);
+            return _dbContext.serviceAuftrag.Include(d => d.Dienstleistung).FirstOrDefault(x => x.Id == id);
         }
 
         public void PostNewAuftrag(ServiceAuftragDTO auftrag)
