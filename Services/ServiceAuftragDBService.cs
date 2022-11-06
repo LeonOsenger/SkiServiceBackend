@@ -40,7 +40,9 @@ namespace SkiServiceBackend.Services
 
         public ServiceAuftrag ?GetService(int id)
         {
-            return _dbContext.serviceAuftrag.Include(d => d.Dienstleistung).FirstOrDefault(x => x.Id == id);
+            return _dbContext.serviceAuftrag
+                .Include(d => d.Dienstleistung)
+                .FirstOrDefault(x => x.Id == id);
         }
 
         public void PostNewAuftrag(ServiceAuftragDTO auftrag)
@@ -66,7 +68,10 @@ namespace SkiServiceBackend.Services
 
         public void PutStatusänderung(int id, string Status)
         {
-            _dbContext.serviceAuftrag.Find(id);
+            ServiceAuftrag auftrag = _dbContext.serviceAuftrag.FirstOrDefault(x => x.Id == id);
+
+            auftrag.status.Equals(Status);
+            _dbContext.SaveChanges();
         }
 
         public void DeleteAudtrag(int id)

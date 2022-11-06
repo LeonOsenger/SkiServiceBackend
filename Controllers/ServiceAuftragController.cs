@@ -49,5 +49,11 @@ namespace SkiServiceBackend.Controllers
         {
             _ServiceAuftrag.PostNewAuftrag(Data);
         }
+
+        [HttpPut]
+        public void PutStatusänderung(int id, string status)
+        {
+            _ServiceAuftrag.PutStatusänderung(id, status);
+        }
     }
 }
