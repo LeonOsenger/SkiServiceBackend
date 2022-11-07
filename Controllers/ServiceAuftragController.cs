@@ -58,9 +58,19 @@ namespace SkiServiceBackend.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void DeleteAuftrag(int id)
+        public ActionResult DeleteAuftrag(int id)
         {
-            _ServiceAuftrag.DeleteAuftrag(id);
+            if(_ServiceAuftrag == null)
+            { return NotFound(); }
+
+            if (_ServiceAuftrag.GetService(id) == null)
+            { return BadRequest();}    
+            else
+            { 
+                _ServiceAuftrag.DeleteAuftrag(id); 
+                return Ok();
+            }
+
         }
     }
 }
