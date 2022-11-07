@@ -29,17 +29,18 @@ namespace SkiServiceBackend.Controllers
             ServiceAuftrag auftrag = _ServiceAuftrag.GetService(id);
             ServiceAuftragDTO result = new ServiceAuftragDTO();
 
-
-            result.AuftragsId = auftrag.Id;
-            result.AuftragsDienstleistung = auftrag.Dienstleistung.DienstleistungsName;
-            result.auftragsPreis = auftrag.Dienstleistung.Preis;
-            result.Auftagpriorität = auftrag.priorität;
-            result.auftragsKundenName = auftrag.KundenName;
-            result.KundenEmail = auftrag.Email;
-            result.KundenTelefon = auftrag.Telefon;
-            result.Auftragsstatus = auftrag.status;
-            result.AuftragCreate_Date = auftrag.Create_Date;
-            result.AuftragPickup_Date = auftrag.Pickup_Date;
+            if(auftrag != null)
+            { 
+                result.AuftragsId = auftrag.Id;
+                result.AuftragsDienstleistung = auftrag.Dienstleistung.DienstleistungsName;
+                result.Auftagpriorität = auftrag.priorität;
+                result.auftragsKundenName = auftrag.KundenName;
+                result.KundenEmail = auftrag.Email;
+                result.KundenTelefon = auftrag.Telefon;
+                result.Auftragsstatus = auftrag.status;
+                result.AuftragCreate_Date = auftrag.Create_Date;
+                result.AuftragPickup_Date = auftrag.Pickup_Date;
+            }
 
             return result;
         }
@@ -54,6 +55,12 @@ namespace SkiServiceBackend.Controllers
         public void PutStatusänderung(int id, string status)
         {
             _ServiceAuftrag.PutStatusänderung(id, status);
+        }
+
+        [HttpDelete("{id}")]
+        public void DeleteAuftrag(int id)
+        {
+            _ServiceAuftrag.DeleteAuftrag(id);
         }
     }
 }

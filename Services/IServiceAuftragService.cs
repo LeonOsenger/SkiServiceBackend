@@ -13,6 +13,6 @@ namespace SkiServiceBackend.Services
 
         void PutStatusänderung(int id, string Status);
 
-        void DeleteAudtrag(int id);
+        void DeleteAuftrag(int id);
     }
 }

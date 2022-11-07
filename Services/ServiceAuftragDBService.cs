@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProjektarbeitBackend.Models;
 using SkiServiceBackend.DTO;
 
@@ -25,7 +26,6 @@ namespace SkiServiceBackend.Services
             {
                 AuftragsId = p.Id,
                 AuftragsDienstleistung = p.Dienstleistung.DienstleistungsName,
-                auftragsPreis = p.Dienstleistung.Preis,
                 Auftagpriorität = p.priorität,
                 auftragsKundenName = p.KundenName,
                 KundenEmail = p.Email,
@@ -74,9 +74,14 @@ namespace SkiServiceBackend.Services
             _dbContext.SaveChanges();
         }
 
-        public void DeleteAudtrag(int id)
+        public void DeleteAuftrag(int id)
         {
-
+            ServiceAuftrag auftrag = _dbContext.serviceAuftrag.FirstOrDefault(x => x.Id == id);
+            if(auftrag != null)
+            {
+                _dbContext.serviceAuftrag.Remove(auftrag);
+                _dbContext.SaveChanges();
+            }
         }
     }
 }

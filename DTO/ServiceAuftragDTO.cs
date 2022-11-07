@@ -11,9 +11,6 @@ namespace SkiServiceBackend.DTO
         [JsonPropertyName("Auftrag_Dienstleistung")]
         public string AuftragsDienstleistung { get; set; }
 
-        [JsonPropertyName("Auftrag_Preis")]
-        public float auftragsPreis { get; set; }
-
         [JsonPropertyName("Auftrag_Priorität")]
         public Priorität Auftagpriorität { get; set; }
 

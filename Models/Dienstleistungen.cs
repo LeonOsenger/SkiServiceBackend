@@ -6,7 +6,5 @@
 
         public string DienstleistungsName { get; set; }
 
-        public float Preis { get; set; }
-
     }
 }
