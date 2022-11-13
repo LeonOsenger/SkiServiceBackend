@@ -8,6 +8,6 @@
 
         public string Nachname { get; set; }
 
-        public int Passwort { get; set; }
+        public string Passwort { get; set; }
     }
 }

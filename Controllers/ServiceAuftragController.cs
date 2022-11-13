@@ -1,31 +1,39 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjektarbeitBackend.Models;
 using SkiServiceBackend.DTO;
 using SkiServiceBackend.Services;
 
 namespace SkiServiceBackend.Controllers
 {
-    [Route("api[controller]")]
+    [Authorize]
+    [Route("api/[controller]")]
     [ApiController]
 
     public class ServiceAuftragController : ControllerBase
     {
         private readonly IServiceAuftragService _ServiceAuftrag;
+        private readonly ILogger<ServiceAuftragDBService> _logger;
 
-        public ServiceAuftragController(IServiceAuftragService serviceAuftrag)
+        public ServiceAuftragController(IServiceAuftragService serviceAuftrag, ILogger<ServiceAuftragDBService> logger)
         {
             _ServiceAuftrag = serviceAuftrag;
+            _logger = logger;
         }
 
         [HttpGet]
         public List<ServiceAuftragDTO> GetAllServices()
         {
+            _logger.LogInformation("Get All Request von Services aufgerufen");
+
             return _ServiceAuftrag.GetAllServices();
         }
 
         [HttpGet("{id}")]
         public ServiceAuftragDTO GetService(int id)
         {
+            _logger.LogInformation("Get by Id Request von Services aufgerufen");
+
             ServiceAuftrag auftrag = _ServiceAuftrag.GetService(id);
             ServiceAuftragDTO result = new ServiceAuftragDTO();
 
@@ -45,26 +53,33 @@ namespace SkiServiceBackend.Controllers
             return result;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public void PostNewAuftrag(ServiceAuftragDTO Data)
         {
+            _logger.LogInformation("Post Request von Services aufgerufen");
+
             _ServiceAuftrag.PostNewAuftrag(Data);
         }
 
         [HttpPut]
         public void PutStatusänderung(int id, string status)
         {
+            _logger.LogInformation("Put Request von Services aufgerufen");
+
             _ServiceAuftrag.PutStatusänderung(id, status);
         }
 
         [HttpDelete("{id}")]
         public ActionResult DeleteAuftrag(int id)
         {
-            if(_ServiceAuftrag == null)
+            _logger.LogInformation("Delete Request von Services aufgerufen");
+
+            if (_ServiceAuftrag == null)
             { return NotFound(); }
 
             if (_ServiceAuftrag.GetService(id) == null)
-            { return BadRequest();}    
+            { return BadRequest(); }    
             else
             { 
                 _ServiceAuftrag.DeleteAuftrag(id); 

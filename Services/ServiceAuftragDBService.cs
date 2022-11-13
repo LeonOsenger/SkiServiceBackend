@@ -8,8 +8,9 @@ namespace SkiServiceBackend.Services
     public class ServiceAuftragDBService : IServiceAuftragService
     {
         private readonly SkiServiceContext _dbContext;
+        
 
-        public ServiceAuftragDBService(SkiServiceContext dbContext)
+        public ServiceAuftragDBService(SkiServiceContext dbContext, ILogger<ServiceAuftragDBService> logger)
         {
             _dbContext = dbContext;
         }
@@ -70,6 +71,7 @@ namespace SkiServiceBackend.Services
         {
             ServiceAuftrag auftrag = _dbContext.serviceAuftrag.FirstOrDefault(x => x.Id == id);
 
+            if (auftrag == null) return;
             auftrag.status.Equals(Status);
             _dbContext.SaveChanges();
         }

@@ -10,7 +10,7 @@ namespace ProjektarbeitBackend.Models
         public DbSet<ServiceAuftrag> serviceAuftrag { get; set; }
 
         public DbSet<Dienstleistungen> serviceDienstleistungen { get; set; }
-    public SkiServiceContext()
+        public SkiServiceContext()
         {
 
         }
@@ -22,7 +22,7 @@ namespace ProjektarbeitBackend.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=SkiService;Integrated Security=True");
+            
         }
     }
 }
