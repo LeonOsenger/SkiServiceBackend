@@ -15,12 +15,21 @@ namespace SkiServiceBackend.Controllers
         private readonly IServiceAuftragService _ServiceAuftrag;
         private readonly ILogger<ServiceAuftragDBService> _logger;
 
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="serviceAuftrag">Zuweisung des Auftrags services</param>
+        /// <param name="logger">zuweisung des loggers</param>
         public ServiceAuftragController(IServiceAuftragService serviceAuftrag, ILogger<ServiceAuftragDBService> logger)
         {
             _ServiceAuftrag = serviceAuftrag;
             _logger = logger;
         }
 
+        /// <summary>
+        /// Get alle aufträge
+        /// </summary>
+        /// <returns>liste aller services</returns>
         [HttpGet]
         public List<ServiceAuftragDTO> GetAllServices()
         {
@@ -29,6 +38,11 @@ namespace SkiServiceBackend.Controllers
             return _ServiceAuftrag.GetAllServices();
         }
 
+        /// <summary>
+        /// Get Auftrag an der Id
+        /// </summary>
+        /// <param name="id">welche Id?</param>
+        /// <returns>einen Service mit der angegebenen Id von allen Service</returns>
         [HttpGet("{id}")]
         public ServiceAuftragDTO GetService(int id)
         {
@@ -53,6 +67,10 @@ namespace SkiServiceBackend.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Neuer auftrag posten 
+        /// </summary>
+        /// <param name="Data">Daten des zu Postenden auftrags</param>
         [AllowAnonymous]
         [HttpPost]
         public void PostNewAuftrag(ServiceAuftragDTO Data)
@@ -62,6 +80,11 @@ namespace SkiServiceBackend.Controllers
             _ServiceAuftrag.PostNewAuftrag(Data);
         }
 
+        /// <summary>
+        /// Status eines Auftrags ändern
+        /// </summary>
+        /// <param name="id">Id des Auftrags wo status geändert werden soll</param>
+        /// <param name="status">Der neue Status</param>
         [HttpPut]
         public void PutStatusänderung(int id, string status)
         {
@@ -70,6 +93,11 @@ namespace SkiServiceBackend.Controllers
             _ServiceAuftrag.PutStatusänderung(id, status);
         }
 
+        /// <summary>
+        /// Auftrag löschen
+        /// </summary>
+        /// <param name="id">Id des zu löschenden auftrags</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public ActionResult DeleteAuftrag(int id)
         {

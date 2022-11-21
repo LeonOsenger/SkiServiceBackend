@@ -9,12 +9,20 @@ namespace SkiServiceBackend.Services
     {
         private readonly SkiServiceContext _dbContext;
         
-
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="dbContext"></param>
+        /// <param name="logger"></param>
         public ServiceAuftragDBService(SkiServiceContext dbContext, ILogger<ServiceAuftragDBService> logger)
         {
             _dbContext = dbContext;
         }
 
+        /// <summary>
+        /// Get all AUfträge
+        /// </summary>
+        /// <returns>Liste aller aufträge</returns>
         public List<ServiceAuftragDTO> GetAllServices()
         {
             List<ServiceAuftrag> Auftag = _dbContext.serviceAuftrag
@@ -39,6 +47,11 @@ namespace SkiServiceBackend.Services
             return result;
         }
 
+        /// <summary>
+        /// Get Aufträg by id
+        /// </summary>
+        /// <param name="id">Id des Auftrags</param>
+        /// <returns>EInen Auftrag</returns>
         public ServiceAuftrag ?GetService(int id)
         {
             return _dbContext.serviceAuftrag
@@ -46,6 +59,10 @@ namespace SkiServiceBackend.Services
                 .FirstOrDefault(x => x.Id == id);
         }
 
+        /// <summary>
+        /// Neuer Auftrag erstellen
+        /// </summary>
+        /// <param name="auftrag">Daten des Auftrags</param>
         public void PostNewAuftrag(ServiceAuftragDTO auftrag)
         {
             ServiceAuftrag addData = new ServiceAuftrag()
@@ -67,6 +84,11 @@ namespace SkiServiceBackend.Services
 
         }
 
+        /// <summary>
+        /// Status ändern
+        /// </summary>
+        /// <param name="id">Id des Auftrags</param>
+        /// <param name="Status">Neuer Status</param>
         public void PutStatusänderung(int id, string Status)
         {
             ServiceAuftrag auftrag = _dbContext.serviceAuftrag.FirstOrDefault(x => x.Id == id);
@@ -76,6 +98,10 @@ namespace SkiServiceBackend.Services
             _dbContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Auftrag Löschen
+        /// </summary>
+        /// <param name="id">Id des Auftrags</param>
         public void DeleteAuftrag(int id)
         {
             ServiceAuftrag auftrag = _dbContext.serviceAuftrag.FirstOrDefault(x => x.Id == id);

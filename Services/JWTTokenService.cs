@@ -21,6 +21,11 @@ namespace SkiServiceBackend.Services
             _dbContext = dbContext;
         }
 
+        /// <summary>
+        /// Token erstellen
+        /// </summary>
+        /// <param name="username">Username des Useres</param>
+        /// <returns></returns>
         public string CreateToken(string username)
         {
             var claim = new List<Claim>
@@ -45,6 +50,12 @@ namespace SkiServiceBackend.Services
 
         }
 
+        /// <summary>
+        /// Checkt ob User Passwort und Name übereinstimmt
+        /// </summary>
+        /// <param name="Vorname">Name des Users</param>
+        /// <param name="Passwort">Passwort</param>
+        /// <returns>True wenn daten übereinstimmt hat false wenn daten nicht übereinstimmt</returns>
         public bool CheckUser(string Vorname, string Passwort)
         {
             List<Mitarbeiter> User = _dbContext.mitarbeiters.ToList();
