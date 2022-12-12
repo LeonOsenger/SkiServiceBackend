@@ -30,6 +30,7 @@ namespace SkiServiceBackend.Controllers
         /// Get alle aufträge
         /// </summary>
         /// <returns>liste aller services</returns>
+        [AllowAnonymous]
         [HttpGet]
         public List<ServiceAuftragDTO> GetAllServices()
         {
@@ -43,6 +44,7 @@ namespace SkiServiceBackend.Controllers
         /// </summary>
         /// <param name="id">welche Id?</param>
         /// <returns>einen Service mit der angegebenen Id von allen Service</returns>
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public ServiceAuftragDTO GetService(int id)
         {
